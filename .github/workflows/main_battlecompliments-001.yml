@@ -25,7 +25,7 @@ jobs:
         run: dotnet build ./BattleCompliments.API/BattleCompliments.API.sln --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./BattleCompliments.API/BattleCompliments.API.sln -c Release -o ${{env.DOTNET_ROOT}}/BattleCompliments.API
+        run: dotnet publish ./BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj -c Release -o ${{env.DOTNET_ROOT}}/BattleCompliments.API
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
