@@ -11,6 +11,7 @@ on:
 env:
   CONFIGURATION: Release
   WORKING_DIRECTORY: BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj
+  AZURE_WEBAPP_PACKAGE_PATH: BattleCompliments.API/published
 jobs:
   build:
     runs-on: windows-latest
@@ -27,13 +28,13 @@ jobs:
         run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --no-build -c Release -o ${{env.DOTNET_ROOT}}\BattleCompliments.API
+        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --no-build -c Release -o "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}\BattleCompliments.API
+          path: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
 
   deploy:
     runs-on: windows-latest
