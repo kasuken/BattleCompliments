@@ -22,10 +22,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build \BattleCompliments.API\BattleCompliments.API\BattleCompliments.API.csproj --configuration Release
+        run: dotnet build ./BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish \BattleCompliments.API\BattleCompliments.API\BattleCompliments.API.csproj --no-build -c Release -o ${{env.DOTNET_ROOT}}\BattleCompliments.API
+        run: dotnet publish ./BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj --no-build -c Release -o ${{env.DOTNET_ROOT}}\BattleCompliments.API
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
