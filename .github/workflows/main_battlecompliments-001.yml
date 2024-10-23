@@ -8,7 +8,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+env:
+  CONFIGURATION: Release
+  WORKING_DIRECTORY: src\Brandplane.Web.App\Server\Brandplane.Web.App.Server.csproj
 jobs:
   build:
     runs-on: windows-latest
@@ -22,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build ./BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj --configuration Release
+        run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj --no-build -c Release -o ${{env.DOTNET_ROOT}}\BattleCompliments.API
+        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --no-build -c Release -o ${{env.DOTNET_ROOT}}\BattleCompliments.API
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
