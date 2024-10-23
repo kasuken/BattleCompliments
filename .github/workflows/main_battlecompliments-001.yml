@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 env:
   CONFIGURATION: Release
-  WORKING_DIRECTORY: src\Brandplane.Web.App\Server\Brandplane.Web.App.Server.csproj
+  WORKING_DIRECTORY: BattleCompliments.API/BattleCompliments.API/BattleCompliments.API.csproj
 jobs:
   build:
     runs-on: windows-latest
